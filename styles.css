@@ -1,15 +1,15 @@
-/* == EILEEN CAM — Full styles.css (final)
-   - Local @font-face hooks (put .woff2 files in assets/fonts/)
-   - Global font var(--font) with system fallbacks
-   - Neon theme tokens
-   - Mobile polish: spacing, headings, buttons, glow, RTL typography
-   - Hero logo sizing (desktop & mobile)
-*/
-
 /* ==== Local Arabic fonts (place .woff2 files in assets/fonts/) ====
    Expected files (WOFF2):
-   Cairo.woff2, Tajawal.woff2, IBM-Plex-Sans-Arabic.woff2, Noto-Kufi-Arabic.woff2,
-   Almarai.woff2, Changa.woff2, El-Messiri.woff2, Amiri.woff2, Mada.woff2, Markazi-Text.woff2
+   - Cairo.woff2
+   - Tajawal.woff2
+   - IBM-Plex-Sans-Arabic.woff2
+   - Noto-Kufi-Arabic.woff2
+   - Almarai.woff2
+   - Changa.woff2
+   - El-Messiri.woff2
+   - Amiri.woff2
+   - Mada.woff2
+   - Markazi-Text.woff2
 */
 @font-face{font-family:"Cairo";src:url("assets/fonts/Cairo.woff2") format("woff2");font-display:swap}
 @font-face{font-family:"Tajawal";src:url("assets/fonts/Tajawal.woff2") format("woff2");font-display:swap}
@@ -22,157 +22,82 @@
 @font-face{font-family:"Mada";src:url("assets/fonts/Mada.woff2") format("woff2");font-display:swap}
 @font-face{font-family:"Markazi Text";src:url("assets/fonts/Markazi-Text.woff2") format("woff2");font-display:swap}
 
-/* ===== Design tokens ===== */
+/* Global application */
+:root{ --font: "Cairo"; } /* default local */
+*{ box-sizing:border-box; font-family: var(--font), system-ui, "Segoe UI", Roboto, Arial, sans-serif }
+
+
 :root{
-  --font: "Cairo";
-  --bg: #0e0f14;
-  --panel: #11131a;
-  --text: #e6e7ee;
-  --muted: #b7bbce;
-  --border: #2a2f43;
-  --chip: #191b24;
-  --neon: #8b5cf6;
-  --neonGlow: rgba(139,92,246,.42);
+  --bg:#0B0B12; --card:#12121A; --muted:#B2B2C0; --text:#FFFFFF;
+  --acc1:#7A3DFF; --acc2:#B066FF; --glass:rgba(255,255,255,.08);
+  --font:"Cairo";
 }
+/* Global reset + font application */
+*{box-sizing:border-box; font-family:var(--font), system-ui, "Segoe UI", Roboto, Arial, sans-serif}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--text)}
+.container{max-width:1180px;margin:0 auto;padding:24px}
+.header{display:flex;align-items:center;gap:12px;padding:8px 0}
+.header img{height:46px}
+.brand-title{font-weight:900;letter-spacing:.02em}
+.badge{display:inline-block;background:linear-gradient(135deg,var(--acc1),var(--acc2));padding:6px 10px;border-radius:999px;font-size:12px}
+.hero{margin-top:8px;padding:20px;border-radius:18px;border:1px solid var(--glass);
+  background: radial-gradient(80% 120% at 30% -10%, #7A3DFF22, transparent),
+              radial-gradient(80% 100% at 100% 0%, #B066FF22, transparent), #12121A;
+  box-shadow:0 10px 40px rgba(0,0,0,.35)}
+h1{margin:6px 0 4px;font-size:36px}
+h2{margin:8px 0 12px}
+.sub{color:var(--muted);margin:0 0 12px}
+.btn{display:inline-flex;align-items:center;gap:10px;border:none;border-radius:14px;background:linear-gradient(135deg,var(--acc1),var(--acc2));color:#fff;padding:12px 16px;font-weight:800;cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn:active{transform:translateY(1px)}
+.row{display:grid;grid-template-columns:repeat(12,1fr);gap:16px;margin-top:16px}
+.card{grid-column:span 12;background:var(--card);border:1px solid var(--glass);border-radius:16px;padding:16px}
+@media(min-width:900px){.span6{grid-column:span 6}.span8{grid-column:span 8}.span4{grid-column:span 4}}
+.small{font-size:12px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px}
+.grid img{width:100%;height:140px;object-fit:cover;border-radius:12px;border:1px solid var(--glass)}
 
-/* ===== Base ===== */
-*{ box-sizing:border-box; font-family:var(--font),system-ui,"Segoe UI",Roboto,Arial,sans-serif }
-html,body{ height:100%; background:var(--bg); color:var(--text) }
-a{ color: color-mix(in srgb, var(--neon) 80%, #fff 20%); text-decoration:none }
-a:hover{ text-decoration:underline }
-p{ color:var(--text); line-height:1.8; margin:.6rem 0 }
-h1{ font-size:clamp(28px,5.5vw,44px); line-height:1.2; text-wrap:balance; margin:.4rem 0 1rem }
-h2{ font-size:clamp(20px,3.6vw,28px); text-wrap:balance; margin:.6rem 0 .8rem }
-h3{ font-size:clamp(18px,3.2vw,22px); margin:.6rem 0 .4rem }
-html[dir="rtl"] p, html[dir="rtl"] li{ line-height:1.9; word-break:break-word }
-
-/* Page container */
-.container, main, body > .wrap{
-  max-width:1120px; margin-inline:auto; padding-inline:clamp(12px,4vw,28px);
-}
-
-/* ===== Neon cards / panels ===== */
-.card,.neon,.feature,.comments,.hero,.panel{
-  background:var(--panel);
-  border:1px solid color-mix(in oklab, var(--neon) 80%, #fff 0%);
-  box-shadow:0 0 0 1px color-mix(in oklab, var(--neon) 70%, #000 0%), 0 0 22px 3px var(--neonGlow);
+/* Neon frame utility */
+.neon{
+  border:2px solid transparent;
+  background:
+    linear-gradient(#12121A,#12121A) padding-box,
+    linear-gradient(135deg,var(--acc1),var(--acc2)) border-box;
   border-radius:18px;
-  padding:clamp(14px,3.5vw,24px);
+  box-shadow:0 0 18px #7A3DFF55, inset 0 0 22px #7A3DFF22;
 }
 
-/* Badges & chips */
-.badge{
-  background:#1b102c; border:1px solid var(--neon); color:#e9dcff;
-  padding:4px 10px; border-radius:999px; font-size:.85rem;
-  display:inline-flex; align-items:center; gap:6px;
-}
-.chip{ background:var(--chip); border:1px solid var(--border); color:#ddd; padding:8px 12px; border-radius:12px }
+/* Feature boxes with neon */
+.feature{border:1px solid var(--glass);border-radius:14px;padding:14px;margin:10px 0;background:#151520;box-shadow:0 0 14px #7A3DFF22}
+.feature h3{margin:0 0 6px;font-size:19px}
+.feature p{margin:0}
 
-/* Buttons */
-button,.btn{
-  background:#202335; color:#fff; border:1px solid var(--border);
-  border-radius:14px; height:46px; padding:0 16px; font-weight:700; cursor:pointer;
-  box-shadow:0 1px 0 #000a inset; transition:.2s ease; -webkit-tap-highlight-color:transparent;
-}
-button:hover,.btn:hover{ filter:brightness(1.08) }
-button.primary,.btn.primary{
-  background:color-mix(in srgb, var(--neon) 30%, #000 70%);
-  border-color:var(--neon);
-  box-shadow:0 0 0 1px var(--neon), 0 0 14px var(--neonGlow) inset;
-}
+/* Language + font controls */
+.langs{display:flex;gap:8px;margin-inline-start:auto}
+.langs button{background:#1c1c26;border:1px solid var(--glass);color:#fff;border-radius:10px;padding:8px 12px;cursor:pointer}
+.langs button.active{outline:2px solid var(--acc1)}
+.font-chooser{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-inline-start:16px}
+.font-chooser select{background:#1c1c26;border:1px solid var(--glass);color:#fff;border-radius:10px;padding:8px 10px}
+.font-chooser .btn{padding:8px 10px}
 
-/* Language switcher */
-.langs{ display:flex; gap:8px; flex-wrap:wrap; align-items:center }
-.langs button{ background:#191b24; border:1px solid var(--border); color:#ddd }
-.langs button.active{
-  background:color-mix(in srgb, var(--neon) 30%, #000 70%);
-  border-color:var(--neon);
-  box-shadow:0 0 0 1px var(--neon), 0 0 14px var(--neonGlow) inset;
-}
+/* Neon marquee (ticker) */
+.ticker{display:flex;align-items:center;gap:10px;margin-top:14px;border:1px solid var(--glass);border-radius:12px;overflow:hidden;background:#101019; box-shadow:0 0 16px #7A3DFF33}
+.ticker .label{background:linear-gradient(135deg,var(--acc1),var(--acc2));padding:8px 12px;font-weight:900;border-inline-end:1px solid #ffffff22;text-shadow:0 0 10px #fff}
+.ticker .track{display:flex;gap:36px;animation:scroll 20s linear infinite;white-space:nowrap;padding:10px 14px;min-width:100%}
+.ticker .item{font-size:18px; text-shadow:0 0 10px #7A3DFF, 0 0 20px #B066FF}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-/* Font controls */
-#fontSelect{ min-width:140px; height:44px; border-radius:12px; background:#181b24; color:#e6e7ee; border:1px solid var(--border) }
-#btnApplyFont,#btnSaveFont{ height:44px }
+.footer{opacity:.7;text-align:center;margin:24px 0 8px}
+.hide{display:none}
 
-/* Hero */
-.hero{ padding:clamp(18px,4.5vw,28px) }
-.hero .actions{ display:flex; gap:10px; flex-wrap:wrap; align-items:center }
-
-/* Features lists */
-.feature ol,.feature ul{ margin:8px 0 0; padding:0; list-style-position:inside }
-.feature li{ margin:6px 0; color:var(--text) }
-
-/* Screens grid */
-#shots-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:10px }
-@media (min-width:740px){ #shots-grid{ grid-template-columns:repeat(3,1fr); gap:14px } }
-
-/* Comments box */
-.comments textarea,.comments input{
-  background:#0f1220; color:#e6e7ee; border:1px solid var(--border); border-radius:12px; padding:10px 12px
-}
-.comments .item{ background:#0f1220; border:1px solid var(--border); border-radius:12px; padding:10px 12px }
-.comments .meta{ color:#9aa0b6; font-size:.85rem }
-
-/* Utilities */
-h1,h2{ overflow-wrap:anywhere }
-hr{ border:0; height:1px; background:linear-gradient(90deg,transparent,#2a2f43,transparent); margin:18px 0 }
-a,button{ -webkit-tap-highlight-color:transparent }
-
-/* === Hero logo sizing & spacing (desktop & mobile) === */
-.hero img,
-.hero .app-icon,
-.hero .logo,
-.hero [class*="logo"] {
-  display:block;
-  margin: 10px auto 6px;
-  width: 100%;
-  max-width: 320px;
-  height: auto;
-  border-radius: 32px;
-  box-shadow: 0 4px 18px rgba(0,0,0,.35);
-}
-@media (max-width: 768px){
-  .hero img,
-  .hero .app-icon,
-  .hero .logo,
-  .hero [class*="logo"] {
-    max-width: 220px;
-    border-radius: 28px;
-  }
-}
-.hero{ padding-top: 18px; padding-bottom: 18px }
-/* ==== Force top app logo size (works even if not inside .hero) ==== */
-header img,
-section.hero img,
-main > img:first-of-type,
-section:first-of-type img,
-body > *:first-child img,
-img[alt*="EILEEN" i],
-img[alt*="ELIEEN" i]{
-  display:block !important;
-  margin: 18px auto 10px !important;
-  width: 100% !important;
-  max-width: 320px !important;   /* حجم على الكمبيوتر */
-  height: auto !important;
-  border-radius: 28px !important;
-  box-shadow: 0 4px 18px rgba(0,0,0,.35) !important;
-}
-
-@media (max-width: 768px){
-  header img,
-  section.hero img,
-  main > img:first-of-type,
-  section:first-of-type img,
-  body > *:first-child img,
-  img[alt*="EILEEN" i],
-  img[alt*="ELIEEN" i]{
-    max-width: 220px !important;  /* أصغر على الجوال */
-    border-radius: 24px !important;
-  }
-}
-
-/* للتوسيط والتباعد حول الشعار الأول */
-header, section.hero, section:first-of-type{
-  text-align:center;
-  padding-top: 12px;
-}
+/* Comments box (preserved) */
+.comments{background: radial-gradient(80% 120% at 0% 0%, #7A3DFF22, transparent), #141420;
+  border:1px solid var(--glass); border-radius:16px; padding:16px; margin-top:16px}
+.comment-form{display:grid;grid-template-columns:1fr auto auto;gap:8px;align-items:center}
+.comment-form textarea{width:100%;min-height:90px;background:#1b1b26;color:#fff;border:1px solid var(--glass);
+  border-radius:12px;padding:10px;resize:vertical}
+.comment-form input[type="number"]{width:80px;background:#1b1b26;color:#fff;border:1px solid var(--glass);
+  border-radius:12px;padding:10px}
+.comment-list{margin-top:12px;display:flex;flex-direction:column;gap:10px;max-height:420px;overflow:auto}
+.comment-item{background:#101018;border:1px solid var(--glass);border-radius:12px;padding:10px}
+.comment-meta{display:flex;gap:10px;align-items:center;color:var(--muted);font-size:12px;margin-bottom:6px}
+.stars{font-size:14px}
