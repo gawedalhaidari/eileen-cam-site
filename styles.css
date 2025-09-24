@@ -1,0 +1,104 @@
+
+/* ==== Local Arabic fonts (place .woff2 files in assets/fonts/) ====
+   Expected files (WOFF2):
+   - Cairo.woff2
+   - Tajawal.woff2
+   - IBM-Plex-Sans-Arabic.woff2
+   - Noto-Kufi-Arabic.woff2
+   - Almarai.woff2
+   - Changa.woff2
+   - El-Messiri.woff2
+   - Amiri.woff2
+   - Mada.woff2
+   - Markazi-Text.woff2
+*/
+@font-face{font-family:"Cairo";src:url("assets/fonts/Cairo.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"Tajawal";src:url("assets/fonts/Tajawal.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"IBM Plex Sans Arabic";src:url("assets/fonts/IBM-Plex-Sans-Arabic.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"Noto Kufi Arabic";src:url("assets/fonts/Noto-Kufi-Arabic.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"Almarai";src:url("assets/fonts/Almarai.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"Changa";src:url("assets/fonts/Changa.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"El Messiri";src:url("assets/fonts/El-Messiri.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"Amiri";src:url("assets/fonts/Amiri.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"Mada";src:url("assets/fonts/Mada.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"Markazi Text";src:url("assets/fonts/Markazi-Text.woff2") format("woff2");font-display:swap}
+
+/* Global application */
+:root{ --font: "Cairo"; } /* default local */
+*{ box-sizing:border-box; font-family: var(--font), system-ui, "Segoe UI", Roboto, Arial, sans-serif }
+
+
+:root{
+  --bg:#0B0B12; --card:#12121A; --muted:#B2B2C0; --text:#FFFFFF;
+  --acc1:#7A3DFF; --acc2:#B066FF; --glass:rgba(255,255,255,.08);
+  --font:"Cairo";
+}
+/* Global reset + font application */
+*{box-sizing:border-box; font-family:var(--font), system-ui, "Segoe UI", Roboto, Arial, sans-serif}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--text)}
+.container{max-width:1180px;margin:0 auto;padding:24px}
+.header{display:flex;align-items:center;gap:12px;padding:8px 0}
+.header img{height:46px}
+.brand-title{font-weight:900;letter-spacing:.02em}
+.badge{display:inline-block;background:linear-gradient(135deg,var(--acc1),var(--acc2));padding:6px 10px;border-radius:999px;font-size:12px}
+.hero{margin-top:8px;padding:20px;border-radius:18px;border:1px solid var(--glass);
+  background: radial-gradient(80% 120% at 30% -10%, #7A3DFF22, transparent),
+              radial-gradient(80% 100% at 100% 0%, #B066FF22, transparent), #12121A;
+  box-shadow:0 10px 40px rgba(0,0,0,.35)}
+h1{margin:6px 0 4px;font-size:36px}
+h2{margin:8px 0 12px}
+.sub{color:var(--muted);margin:0 0 12px}
+.btn{display:inline-flex;align-items:center;gap:10px;border:none;border-radius:14px;background:linear-gradient(135deg,var(--acc1),var(--acc2));color:#fff;padding:12px 16px;font-weight:800;cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn:active{transform:translateY(1px)}
+.row{display:grid;grid-template-columns:repeat(12,1fr);gap:16px;margin-top:16px}
+.card{grid-column:span 12;background:var(--card);border:1px solid var(--glass);border-radius:16px;padding:16px}
+@media(min-width:900px){.span6{grid-column:span 6}.span8{grid-column:span 8}.span4{grid-column:span 4}}
+.small{font-size:12px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px}
+.grid img{width:100%;height:140px;object-fit:cover;border-radius:12px;border:1px solid var(--glass)}
+
+/* Neon frame utility */
+.neon{
+  border:2px solid transparent;
+  background:
+    linear-gradient(#12121A,#12121A) padding-box,
+    linear-gradient(135deg,var(--acc1),var(--acc2)) border-box;
+  border-radius:18px;
+  box-shadow:0 0 18px #7A3DFF55, inset 0 0 22px #7A3DFF22;
+}
+
+/* Feature boxes with neon */
+.feature{border:1px solid var(--glass);border-radius:14px;padding:14px;margin:10px 0;background:#151520;box-shadow:0 0 14px #7A3DFF22}
+.feature h3{margin:0 0 6px;font-size:19px}
+.feature p{margin:0}
+
+/* Language + font controls */
+.langs{display:flex;gap:8px;margin-inline-start:auto}
+.langs button{background:#1c1c26;border:1px solid var(--glass);color:#fff;border-radius:10px;padding:8px 12px;cursor:pointer}
+.langs button.active{outline:2px solid var(--acc1)}
+.font-chooser{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-inline-start:16px}
+.font-chooser select{background:#1c1c26;border:1px solid var(--glass);color:#fff;border-radius:10px;padding:8px 10px}
+.font-chooser .btn{padding:8px 10px}
+
+/* Neon marquee (ticker) */
+.ticker{display:flex;align-items:center;gap:10px;margin-top:14px;border:1px solid var(--glass);border-radius:12px;overflow:hidden;background:#101019; box-shadow:0 0 16px #7A3DFF33}
+.ticker .label{background:linear-gradient(135deg,var(--acc1),var(--acc2));padding:8px 12px;font-weight:900;border-inline-end:1px solid #ffffff22;text-shadow:0 0 10px #fff}
+.ticker .track{display:flex;gap:36px;animation:scroll 20s linear infinite;white-space:nowrap;padding:10px 14px;min-width:100%}
+.ticker .item{font-size:18px; text-shadow:0 0 10px #7A3DFF, 0 0 20px #B066FF}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+.footer{opacity:.7;text-align:center;margin:24px 0 8px}
+.hide{display:none}
+
+/* Comments box (preserved) */
+.comments{background: radial-gradient(80% 120% at 0% 0%, #7A3DFF22, transparent), #141420;
+  border:1px solid var(--glass); border-radius:16px; padding:16px; margin-top:16px}
+.comment-form{display:grid;grid-template-columns:1fr auto auto;gap:8px;align-items:center}
+.comment-form textarea{width:100%;min-height:90px;background:#1b1b26;color:#fff;border:1px solid var(--glass);
+  border-radius:12px;padding:10px;resize:vertical}
+.comment-form input[type="number"]{width:80px;background:#1b1b26;color:#fff;border:1px solid var(--glass);
+  border-radius:12px;padding:10px}
+.comment-list{margin-top:12px;display:flex;flex-direction:column;gap:10px;max-height:420px;overflow:auto}
+.comment-item{background:#101018;border:1px solid var(--glass);border-radius:12px;padding:10px}
+.comment-meta{display:flex;gap:10px;align-items:center;color:var(--muted);font-size:12px;margin-bottom:6px}
+.stars{font-size:14px}
