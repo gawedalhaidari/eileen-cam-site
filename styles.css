@@ -141,3 +141,38 @@ a,button{ -webkit-tap-highlight-color:transparent }
   }
 }
 .hero{ padding-top: 18px; padding-bottom: 18px }
+/* ==== Force top app logo size (works even if not inside .hero) ==== */
+header img,
+section.hero img,
+main > img:first-of-type,
+section:first-of-type img,
+body > *:first-child img,
+img[alt*="EILEEN" i],
+img[alt*="ELIEEN" i]{
+  display:block !important;
+  margin: 18px auto 10px !important;
+  width: 100% !important;
+  max-width: 320px !important;   /* حجم على الكمبيوتر */
+  height: auto !important;
+  border-radius: 28px !important;
+  box-shadow: 0 4px 18px rgba(0,0,0,.35) !important;
+}
+
+@media (max-width: 768px){
+  header img,
+  section.hero img,
+  main > img:first-of-type,
+  section:first-of-type img,
+  body > *:first-child img,
+  img[alt*="EILEEN" i],
+  img[alt*="ELIEEN" i]{
+    max-width: 220px !important;  /* أصغر على الجوال */
+    border-radius: 24px !important;
+  }
+}
+
+/* للتوسيط والتباعد حول الشعار الأول */
+header, section.hero, section:first-of-type{
+  text-align:center;
+  padding-top: 12px;
+}
