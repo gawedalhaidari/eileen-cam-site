@@ -1,8 +1,9 @@
-/* == EILEEN CAM — Full styles.css (replacement)
+/* == EILEEN CAM — Full styles.css (final)
    - Local @font-face hooks (put .woff2 files in assets/fonts/)
    - Global font var(--font) with system fallbacks
    - Neon theme tokens
    - Mobile polish: spacing, headings, buttons, glow, RTL typography
+   - Hero logo sizing (desktop & mobile)
 */
 
 /* ==== Local Arabic fonts (place .woff2 files in assets/fonts/) ====
@@ -116,3 +117,27 @@ button.primary,.btn.primary{
 h1,h2{ overflow-wrap:anywhere }
 hr{ border:0; height:1px; background:linear-gradient(90deg,transparent,#2a2f43,transparent); margin:18px 0 }
 a,button{ -webkit-tap-highlight-color:transparent }
+
+/* === Hero logo sizing & spacing (desktop & mobile) === */
+.hero img,
+.hero .app-icon,
+.hero .logo,
+.hero [class*="logo"] {
+  display:block;
+  margin: 10px auto 6px;
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  border-radius: 32px;
+  box-shadow: 0 4px 18px rgba(0,0,0,.35);
+}
+@media (max-width: 768px){
+  .hero img,
+  .hero .app-icon,
+  .hero .logo,
+  .hero [class*="logo"] {
+    max-width: 220px;
+    border-radius: 28px;
+  }
+}
+.hero{ padding-top: 18px; padding-bottom: 18px }
