@@ -102,3 +102,12 @@ h2{margin:8px 0 12px}
 .comment-item{background:#101018;border:1px solid var(--glass);border-radius:12px;padding:10px}
 .comment-meta{display:flex;gap:10px;align-items:center;color:var(--muted);font-size:12px;margin-bottom:6px}
 .stars{font-size:14px}
+
+
+/* ==== EILEEN CAM: RTL + feature typography ==== */
+html[dir="rtl"] body { direction: rtl; text-align: right; }
+#eileen-cam-desc .card { border-color: var(--acc1); box-shadow: 0 0 14px #7A3DFF22; }
+#eileen-cam-desc .feat-title { font-size: 20px; font-weight: 800; margin: 4px 0 8px; }
+#eileen-cam-desc .feat-desc { font-size: 15px; color: var(--muted); line-height: 1.9; }
+#eileen-cam-desc ul.feat-desc { padding-inline-start: 20px; margin: 0; }
+
